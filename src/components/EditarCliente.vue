@@ -66,10 +66,9 @@
               <input type="submit" class="button is-primary" value="Atualizar Cliente">
             </div>
           </div>
+
           <div class="field column is-8" style="margin-top: 32px;">
-            
             <input type="submit" class="button is-primary" value="Voltar" @click="voltar()">
-            
           </div>
         </div>
 
@@ -84,6 +83,7 @@ import Message from "./Mensagem.vue";
 export default {
   name: "EditarCliente",
   props: ['id'],
+
   data() {
     return {
       nascimento: null,
@@ -101,28 +101,28 @@ export default {
     Message,
   },
 
-  mounted() {
+mounted() {
   this.getCliente();
 },
 
 methods: {
-    async getCliente() {
-      try {
-        const req = await fetch(`http://localhost:8080/api/clientes/${this.id}`);
-        const data = await req.json();
+  async getCliente() {
+    try {
+      const req = await fetch(`http://localhost:8080/api/clientes/${this.id}`);
+      const data = await req.json();
 
-        this.nascimento = data.nascimento;
-        this.cpf = data.cpf;
-        this.nome = data.nome;
-        this.endereco = data.endereco;
-        this.telefone = data.telefone;
-        this.email = data.email;
-        this.datacadastro = data.datacadastro;
+      this.nascimento = data.nascimento;
+      this.cpf = data.cpf;
+      this.nome = data.nome;
+      this.endereco = data.endereco;
+      this.telefone = data.telefone;
+      this.email = data.email;
+      this.datacadastro = data.datacadastro;
 
-      } catch (error) {
-        console.error("Não foi possível obter os dados do cliente!");
-      }
-    },
+    } catch (error) {
+      console.error("Não foi possível obter os dados do cliente!");
+    }
+  },
 
   async updateCliente(e) {
   e.preventDefault();
